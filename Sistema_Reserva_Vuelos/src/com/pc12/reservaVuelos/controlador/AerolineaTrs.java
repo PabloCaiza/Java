@@ -76,18 +76,41 @@ public class AerolineaTrs implements ICrud {
 
 	@Override
 	public Object consultarPorId(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public boolean disponibilidad(String id) {
-		boolean bandera=true;
+		Aerolinea aero = null;
 		for (Aerolinea aerolinea : Memoria.aerolineas) {
-			if(aerolinea!=null&&aerolinea.getIdAerolinea().equals(id)) {
-				bandera=false;
+			if (aerolinea != null && aerolinea.getIdAerolinea().equals(id)) {
+				aero = aerolinea;
+				break;
+			}
+		}
+		return aero;
+	}
+
+	public boolean disponibilidad(String id) {
+		boolean bandera = true;
+		for (Aerolinea aerolinea : Memoria.aerolineas) {
+			if (aerolinea != null && aerolinea.getIdAerolinea().equals(id)) {
+				bandera = false;
 				break;
 			}
 		}
 		return bandera;
+	}
+
+	/**
+	 * Metodo para imprimir las aerolineas
+	 */
+
+	public String imprimirListaFormateada() {
+		StringBuilder lista = new StringBuilder();
+		for (Aerolinea aerolinea : Memoria.aerolineas) {
+			if (aerolinea != null) {
+				lista.append("Nombre: ").append(aerolinea.getNombre()).append(" ").append("ID: ")
+						.append(aerolinea.getIdAerolinea()).append("||");
+
+			}
+		}
+		return lista.toString();
 	}
 
 }

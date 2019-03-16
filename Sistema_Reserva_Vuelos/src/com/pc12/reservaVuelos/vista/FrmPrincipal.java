@@ -10,6 +10,7 @@ public class FrmPrincipal {
 	public FrmPrincipal(Pasajero pasajero) {
 		int opcion = 0;
 		PasajeroTrs pasajeroTrs = new PasajeroTrs();
+		String mensaje, id, clave;
 		do {
 			System.out.println("                                ");
 			System.out.println("********************************");
@@ -42,8 +43,7 @@ public class FrmPrincipal {
 				System.out.println("3. Informacion de Vuelos");
 				System.out.println("4. Regresar");
 				System.out.println("5. Salir");
-				
-				
+
 				op = Integer.parseInt(UtilLectura.leerDesdeTecalado());
 				switch (op) {
 				case 1:
@@ -54,7 +54,7 @@ public class FrmPrincipal {
 				case 3:
 					break;
 				case 4:
-					 FrmPrincipal a= new FrmPrincipal(pasajero);
+					FrmPrincipal a = new FrmPrincipal(pasajero);
 					break;
 				case 5:
 					System.exit(0);
@@ -76,18 +76,41 @@ public class FrmPrincipal {
 
 				break;
 			case 5:
+				System.out.print("Ingrese su cedula para modificar sus datos: ");
+				id = UtilLectura.leerDesdeTecalado();
+				if (!pasajeroTrs.disponibilidad(id)) {
+					System.out.print("Ingrese su nombre: ");
+					String nombre = UtilLectura.leerDesdeTecalado();
+
+					System.out.print("Ingrese su email: ");
+					String email = UtilLectura.leerDesdeTecalado();
+					System.out.print("Ingrese su clave: ");
+					clave = UtilLectura.leerDesdeTecalado();
+					Pasajero pas = new Pasajero(nombre, id, email, clave);
+					mensaje = pasajeroTrs.modificar(pas);
+					System.out.println(mensaje);
+				} else {
+					System.err.println("Ingrese bien la cedula para modificar");
+				}
 
 				break;
 			case 6:
-				for (Pasajero pas :Memoria.pasajeros ) {
-					System.out.println(pas);
+				System.out.print("Ingrese su cedula: ");
+				id = UtilLectura.leerDesdeTecalado();
+
+				for (Pasajero pas : Memoria.pasajeros) {
+					if (pas.getCedula().equals(id)) {
+						System.out.println(pas);
+						break;
+					}
 				}
-				
+
 				break;
 			case 7:
 				System.out.println("Ingrese su cedula");
-				String id =UtilLectura.leerDesdeTecalado();
-				String mensaje=pasajeroTrs.eliminar(id);
+				id = UtilLectura.leerDesdeTecalado();
+				Pasajero pas = (Pasajero) pasajeroTrs.consultarPorIde(id);
+				mensaje = pasajeroTrs.eliminar(pas);
 				System.out.println(mensaje);
 				FrmLogin2 b = new FrmLogin2();
 				break;

@@ -14,7 +14,7 @@ public interface ICrudC {
 
 	public String modificar(Object registro);
 
-	public String eliminar(String id);
+	public String eliminar(Object registro);
 
 	/*
 	 * Con el wildcard ? se devuelve cualquier lista de objetos

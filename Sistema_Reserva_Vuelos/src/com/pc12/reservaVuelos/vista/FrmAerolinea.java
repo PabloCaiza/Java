@@ -74,7 +74,7 @@ public class FrmAerolinea {
 				System.out.println(mensaje);
 				break;
 			case 5:
-				FrmLogin2 a = new FrmLogin2();
+				FrmAdmin a = new FrmAdmin();
 				break;
 			case 6:
 

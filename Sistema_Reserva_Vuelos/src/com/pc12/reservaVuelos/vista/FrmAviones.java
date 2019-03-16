@@ -1,6 +1,8 @@
 package com.pc12.reservaVuelos.vista;
 
+import com.pc12.reservaVuelos.controlador.AerolineaTrs;
 import com.pc12.reservaVuelos.controlador.AvionTrs;
+import com.pc12.reservaVuelos.modelo.Aerolinea;
 import com.pc12.reservaVuelos.modelo.Avion;
 import com.pc12.reservaVuelos.modelo.Memoria;
 import com.pc12.reservaVuelos.util.UtilLectura;
@@ -15,6 +17,8 @@ public class FrmAviones {
 	private void crearMenu() {
 		int opcion = 0;
 		AvionTrs av = new AvionTrs();
+		AerolineaTrs aeo = new AerolineaTrs();
+		Aerolinea aerolinea;
 		Avion avion;
 		String placa;
 		int capacidad;
@@ -52,11 +56,12 @@ public class FrmAviones {
 				capacidad = Integer.parseInt(UtilLectura.leerDesdeTecalado());
 				System.out.print("Placa: ");
 				placa = UtilLectura.leerDesdeTecalado();
+				System.out.println("Lista De Aerolineas " + aeo.imprimirListaFormateada());
+				String id = UtilLectura.leerDesdeTecalado();
+				aerolinea = (Aerolinea) aeo.consultarPorId(id);
 
-				// Dar valores
-				
-				avion= new Avion(compania,tipo,capacidad,placa);
-			
+				avion = new Avion(compania, tipo, capacidad, placa, aerolinea);
+
 				// crear un objeto para aceder a sus metodos
 				if (av.disponibilidad(placa)) {
 					mensaje = av.guardar(avion);
@@ -71,33 +76,40 @@ public class FrmAviones {
 				for (Avion avion1 : Memoria.aviones) {
 					System.out.println(avion1);
 				}
-				
+
 				System.out.print("¿Cual avion desea modificar? ingrese su placa: ");
-				placa=UtilLectura.leerDesdeTecalado();
-				System.out.print("Compañia:  ");
-				compania = UtilLectura.leerDesdeTecalado();
-				System.out.print("Tipo:  ");
-				tipo = UtilLectura.leerDesdeTecalado();
-				System.out.print("Capacidad: ");
-				capacidad = Integer.parseInt(UtilLectura.leerDesdeTecalado());
-				avion= new Avion(compania,tipo,capacidad,placa);
-			
-				mensaje=av.modificar(avion);
-				System.out.println(mensaje);
-				
+				placa = UtilLectura.leerDesdeTecalado();
+				if (!av.disponibilidad(placa)) {
+					System.out.print("Compañia:  ");
+					compania = UtilLectura.leerDesdeTecalado();
+					System.out.print("Tipo:  ");
+					tipo = UtilLectura.leerDesdeTecalado();
+					System.out.print("Capacidad: ");
+					capacidad = Integer.parseInt(UtilLectura.leerDesdeTecalado());
+					System.out.println("Lista De Aerolineas " + aeo.imprimirListaFormateada());
+					id = UtilLectura.leerDesdeTecalado();
+					aerolinea = (Aerolinea) aeo.consultarPorId(id);
+					avion = new Avion(compania, tipo, capacidad, placa, aerolinea);
+					mensaje = av.modificar(avion);
+					System.out.println(mensaje);
+				} else {
+					System.err.println("No se encontro registro");
+				}
+
 				break;
 			case 4:
 				for (Avion avion1 : Memoria.aviones) {
 					System.out.println(avion1);
 				}
 				System.out.print("¿Que avion desea eliminar? ingrese su placa : ");
-				String id = UtilLectura.leerDesdeTecalado();
-				mensaje = av.eliminar(id);
+				id = UtilLectura.leerDesdeTecalado();
+				Avion avion1 = (Avion) av.consultarTodos(id);
+				mensaje = av.eliminar(avion1);
 				System.out.println(mensaje);
 
 				break;
 			case 5:
-				FrmLogin2 a = new FrmLogin2();
+				FrmAdmin a = new FrmAdmin();
 				break;
 			case 6:
 

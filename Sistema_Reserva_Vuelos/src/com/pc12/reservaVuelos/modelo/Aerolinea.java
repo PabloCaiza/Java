@@ -98,7 +98,7 @@ public class Aerolinea {
 	 */
 	@Override
 	public String toString() {
-		return "Aerolinea [nombre=" + nombre + ", idAerolinea=" + idAerolinea + ", aviones=" + aviones + "]";
+		return "Aerolinea [nombre=" + nombre + ", idAerolinea=" + idAerolinea + "]";
 	}
 	
 	

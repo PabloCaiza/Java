@@ -10,8 +10,12 @@ public class AvionTrs implements ICrudC {
 	@Override
 	public String guardar(Object registro) {
 		if(registro!=null) {
+		 
 			Memoria.aviones.add((Avion) registro);
+			
 			return "Se guardo correctamente";
+		
+			
 		}else {
 			return "Llene los espacios";
 		}
@@ -20,45 +24,44 @@ public class AvionTrs implements ICrudC {
 
 	@Override
 	public String modificar(Object registro) {
-		if(registro!=null) {
-		//obteniendo la posicion del registro
-		int pos=Memoria.aviones.indexOf(registro);
+	if(registro!=null) {
+		int pos= Memoria.aviones.indexOf(registro);
 		if(pos>=0) {
-		Memoria.aviones.set(pos, (Avion) registro);
-		return "Se modifico correctamente";
-		}else
-		return "no se encontro registro";
+			Memoria.aviones.set(pos,(Avion) registro);
+			return "Se modifico correctamente";
 		}else {
-			return "llene los espacion";
+			return "No se ha encontrado registro";
 		}
+		
+	}else {
+		return "llene todos los datos";
+	}
 	}
 
 	@Override
-	public String eliminar(String id) {
-		boolean bandera=false;
-		int cont =0;
-		for (int i = 0; i < Memoria.aviones.size(); i++) {
-			if(Memoria.aviones.get(i).getPlaca().equals(id)) {
-				cont=i;
-				bandera=true;
-				break;
+	public String eliminar(Object registro) {
+		
+		if(registro!=null) {
+			int pos = Memoria.aviones.indexOf(registro);
+			
+			if(pos>=0) {
+				Memoria.aviones.remove(pos);
+				return "Se Elimino correctamente";
+				
+			}else {
+				return "No existe registro";
 			}
-		}
-		if(bandera) {
-			Memoria.aviones.remove(cont);
-			return "eliminado correctamente";
+			
 		}else {
-			return "no se encontro";
+			return "Esta vacio";
 		}
-		
-		
 	
 	}
 
 	@Override
 	public List<?> consultarTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return Memoria.aviones;
 	}
 	public boolean disponibilidad(String placa) {
 		boolean bandera=true;
@@ -70,6 +73,18 @@ public class AvionTrs implements ICrudC {
 		}
 		
 		return bandera;
+	}
+
+	public Object consultarTodos(String id) {
+		Avion a=null;
+		for (Avion avion : Memoria.aviones) {
+			if(avion.getPlaca().equals(id)) {
+				a=avion;
+				break;
+			}
+		}
+		
+		return a;
 	}
 
 	
