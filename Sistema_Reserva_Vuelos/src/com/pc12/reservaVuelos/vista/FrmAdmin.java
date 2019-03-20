@@ -9,19 +9,24 @@ public class FrmAdmin {
 
 	private void crearMenu() {
 		int opcion = 0;
-		do {
-
-			System.out.println("****************************");
-			System.out.println("*ADMINISTRACION DEL SISTEMA*");
-			System.out.println("****************************");
-			System.out.println("                            ");
-			System.out.println("1.Administracion de vuelos");
-			System.out.println("2.Administracion de aviones");
-			System.out.println("3.Administracion de Aerolineas");
-			System.out.println("4.Regresar");
-			System.out.println("5.Salir");
-			System.out.println("...Selecione una opcion");
-			opcion = Integer.parseInt(UtilLectura.leerDesdeTecalado());
+		do {	
+			
+			try {
+				System.out.println("****************************");
+				System.out.println("*ADMINISTRACION DEL SISTEMA*");
+				System.out.println("****************************");
+				System.out.println("                            ");
+				System.out.println("1.Administracion de vuelos");
+				System.out.println("2.Administracion de aviones");
+				System.out.println("3.Administracion de Aerolineas");
+				System.out.println("4.Regresar");
+				System.out.println("5.Salir");
+				System.out.println("...Selecione una opcion");
+				opcion = Integer.parseInt(UtilLectura.leerDesdeTecalado());
+			} catch (NumberFormatException e) {
+				System.err.println("Ingrese solo numeros");
+			}
+			
 			switch (opcion) {
 			case 1:
 				FrmVuelo b = new FrmVuelo();
@@ -41,7 +46,7 @@ public class FrmAdmin {
 				break;
 
 			default:
-				System.out.println("Solo numeros entre 1-4");
+				System.err.println("Solo numeros entre 1-4");
 				break;
 			}
 		} while (opcion != 4);

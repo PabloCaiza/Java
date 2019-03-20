@@ -57,53 +57,56 @@ public class PasajeroTrs implements ICrudC {
 	 * return bandera; }
 	 */
 	@Override
-	public String guardar(Object registro) {
+	public String guardar(Object registro) throws Exception {
+		
+			
+		
 		if (registro != null) {
 			Memoria.pasajeros.add((Pasajero) registro);
-			return "Se guardo correctamente";
+			return "Registrado Correctamente";
 		} else {
 			return "Llene el registro";
 		}
 	}
 
 	@Override
-	public String modificar(Object registro) {
-		if(registro!=null) {
-			int pos =Memoria.pasajeros.indexOf(registro);
-			if(pos>=0) {
-				
-				Memoria.pasajeros.set(pos, (Pasajero)registro);
+	public String modificar(Object registro) throws Exception {
+		if (registro != null) {
+			int pos = Memoria.pasajeros.indexOf(registro);
+			if (pos >= 0) {
+
+				Memoria.pasajeros.set(pos, (Pasajero) registro);
 				return "Se modifico correctamente";
-			}else {
+			} else {
 				return "no se encontro registro";
 			}
-		}else{
+		} else {
 			return "Llene los espacios";
 		}
 	}
 
 	@Override
-	public String eliminar(Object registro) {
-		if(registro!=null) {
+	public String eliminar(Object registro) throws Exception {
+		if (registro != null) {
 			int pos = Memoria.pasajeros.indexOf(registro);
-			if(pos>=0) {
+			if (pos >= 0) {
 				Memoria.pasajeros.remove(pos);
 				return "se elimino correctamente";
-			}else {
+			} else {
 				return "no se encontro registro";
 			}
-		}else {
+		} else {
 			return "Ingrese el id";
 		}
 	}
 
 	@Override
-	public List<?> consultarTodos() {
+	public List<?> consultarTodos() throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public Object consultarPorIde(String id) {
+	public Object consultarPorIde(String id) throws Exception {
 		Pasajero pasajero = null;
 		for (Pasajero pas : Memoria.pasajeros) {
 			if (pas.getCedula().equals(id)) {
@@ -114,7 +117,7 @@ public class PasajeroTrs implements ICrudC {
 		return pasajero;
 	}
 
-	public Pasajero validarPasajero(String email, String clave) {
+	public Pasajero validarPasajero(String email, String clave) throws Exception {
 		Pasajero pasajero = null;
 		for (Pasajero pas : Memoria.pasajeros) {
 			if (pas.getEmail().equals(email) && pas.getClave().equals(clave)) {
@@ -125,26 +128,29 @@ public class PasajeroTrs implements ICrudC {
 		return pasajero;
 	}
 
-	public boolean disponibilidad(String cedula, String email) {
-		boolean bandera=true;
+	public boolean disponibilidad(String cedula, String email)  {
+		boolean bandera = true;
 		for (Pasajero pas : Memoria.pasajeros) {
 			if (pas.getEmail().equals(email) || pas.getCedula().equals(cedula)) {
-				bandera=false;
+				bandera = false;
 				break;
 			}
-		
-	}
+
+		}
 		return bandera;
-}
+	}
+
 	public boolean disponibilidad(String cedula) {
-		boolean bandera=true;
+		boolean bandera = true;
 		for (Pasajero pas : Memoria.pasajeros) {
 			if (pas.getCedula().equals(cedula)) {
-				bandera=false;
+				bandera = false;
 				break;
 			}
-		
-	}
+
+		}
 		return bandera;
-}
+	}
+	
+	
 }

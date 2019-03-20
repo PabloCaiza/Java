@@ -1,8 +1,9 @@
 package com.pc12.reservaVuelos.modelo;
 
+import java.util.Comparator;
 import java.util.Date;
 
-public class Vuelo {
+public class Vuelo implements Comparator<Vuelo> {
 	private double costo;
 	private String partida;
 	private String destino;
@@ -124,9 +125,16 @@ public Vuelo(double costo, String partida, String destino, String id, Date fecha
 	}
 
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+
+
+
+	@Override
+	public int compare(Vuelo t, Vuelo t1) {
+		
+		return  Double.compare(t.getCosto(), t1.getCosto());
+	}
+
+
 
 	
 

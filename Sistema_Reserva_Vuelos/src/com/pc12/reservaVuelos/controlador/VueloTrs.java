@@ -33,8 +33,28 @@ public class VueloTrs implements ICrud {
 
 	@Override
 	public String actualizar(String id, Object registro) {
-		// TODO Auto-generated method stub
-		return null;
+		if(registro!=null) {
+			boolean bandera=false;
+			int cont=0;
+			for (Vuelo vuelo: Memoria.vuelos) {
+				if(vuelo!=null&&vuelo.getId().equals(id)) {
+					bandera=true;
+					break;
+				}
+				cont++;
+			}
+			
+			if(bandera) {
+				Memoria.vuelos[cont]=(Vuelo)registro;
+				return "Se modifico correctamente";
+			}else {
+				return "No se ha encontrado";
+			}
+			
+		}else {
+			return "Llene todos los espacion";
+		}
+	
 	}
 
 	@Override

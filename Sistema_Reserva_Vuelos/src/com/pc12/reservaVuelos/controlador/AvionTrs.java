@@ -53,7 +53,7 @@ public class AvionTrs implements ICrudC {
 			}
 			
 		}else {
-			return "Esta vacio";
+			return "No Existe";
 		}
 	
 	}

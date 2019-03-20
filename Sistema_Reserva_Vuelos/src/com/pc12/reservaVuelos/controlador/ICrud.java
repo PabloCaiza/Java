@@ -6,6 +6,6 @@ public interface ICrud {
 	public String actualizar(String id,Object registro);
 	public String eliminar(String id);
 	public Object[] listar();
-	public Object consultarPorId(String id);
+	public Object consultarPorId(String id)throws Exception;
 	
 }

@@ -10,15 +10,15 @@ import java.util.List;
  */
 public interface ICrudC {
 
-	public String guardar(Object registro);
+	public String guardar(Object registro)throws Exception;
 
-	public String modificar(Object registro);
+	public String modificar(Object registro)throws Exception;
 
-	public String eliminar(Object registro);
+	public String eliminar(Object registro)throws Exception;
 
 	/*
 	 * Con el wildcard ? se devuelve cualquier lista de objetos
 	 */
-	public List<?> consultarTodos();
+	public List<?> consultarTodos() throws Exception;
 
 }

@@ -8,7 +8,7 @@ public class AerolineaTrs implements ICrud {
 	@Override
 	public String guaradar(Object registro) {
 		boolean bandera = false;
-
+		if(registro!=null) {
 		for (int i = 0; i < Memoria.aerolineas.length; i++) {
 			if (Memoria.aerolineas[i] == null) {
 				Memoria.aerolineas[i] = (Aerolinea) registro;
@@ -20,6 +20,9 @@ public class AerolineaTrs implements ICrud {
 			return "Guardado correctamente";
 		} else {
 			return "Solo se acepta 5 datos";
+		}
+		}else {
+			return "LLene Todos los espacions";
 		}
 	}
 
@@ -75,13 +78,17 @@ public class AerolineaTrs implements ICrud {
 	}
 
 	@Override
-	public Object consultarPorId(String id) {
+	public Object consultarPorId(String id)throws Exception {
 		Aerolinea aero = null;
-		for (Aerolinea aerolinea : Memoria.aerolineas) {
-			if (aerolinea != null && aerolinea.getIdAerolinea().equals(id)) {
-				aero = aerolinea;
-				break;
+		try {
+			for (Aerolinea aerolinea : Memoria.aerolineas) {
+				if ( aerolinea.getIdAerolinea().equals(id)) {
+					aero = aerolinea;
+					break;
+				}
 			}
+		} catch (Exception e) {
+			throw new Exception("Aerolinea no existe");
 		}
 		return aero;
 	}

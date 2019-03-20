@@ -21,17 +21,21 @@ public class FrmAerolinea {
 
 		do {
 
-			System.out.println("\n\n*************************************");
-			System.out.println("*         SISTEMA DE AEROLINEAS      *");
-			System.out.println("*************************************");
-			System.out.println("1. Listar");
-			System.out.println("2. Guardar");
-			System.out.println("3. Actualizar");
-			System.out.println("4. Eliminar");
-			System.out.println("5. Regresar");
-			System.out.println("6. Salir");
-			System.out.print("... Seleccione una opción:");
-			opcion = Integer.parseInt(UtilLectura.leerDesdeTecalado());
+			try {
+				System.out.println("\n\n*************************************");
+				System.out.println("*         SISTEMA DE AEROLINEAS      *");
+				System.out.println("*************************************");
+				System.out.println("1. Listar");
+				System.out.println("2. Guardar");
+				System.out.println("3. Actualizar");
+				System.out.println("4. Eliminar");
+				System.out.println("5. Regresar");
+				System.out.println("6. Salir");
+				System.out.print("... Seleccione una opción:");
+				opcion = Integer.parseInt(UtilLectura.leerDesdeTecalado());
+			} catch (NumberFormatException e) {
+				System.err.println("Solo Ingrese numero !!");
+			}
 			switch (opcion) {
 			case 1:
 				for (Aerolinea ae : Memoria.aerolineas) {
@@ -45,10 +49,10 @@ public class FrmAerolinea {
 				System.out.print("ID: ");
 				id = UtilLectura.leerDesdeTecalado();
 				aerolinea = new Aerolinea(nombre, id);
-				if(aerolineaTrs.disponibilidad(id)) {
-				mensaje = aerolineaTrs.guaradar(aerolinea);
-				System.out.println(mensaje);
-				}else {
+				if (aerolineaTrs.disponibilidad(id)) {
+					mensaje = aerolineaTrs.guaradar(aerolinea);
+					System.out.println(mensaje);
+				} else {
 					System.err.println("ya se encuentra registrado");
 				}
 				break;
@@ -60,8 +64,8 @@ public class FrmAerolinea {
 				id = UtilLectura.leerDesdeTecalado();
 				System.out.print("Nombre: ");
 				nombre = UtilLectura.leerDesdeTecalado();
-				aerolinea=new Aerolinea(nombre,id);
-				mensaje=aerolineaTrs.actualizar(id, aerolinea);
+				aerolinea = new Aerolinea(nombre, id);
+				mensaje = aerolineaTrs.actualizar(id, aerolinea);
 				System.out.println(mensaje);
 				break;
 			case 4:
@@ -82,7 +86,7 @@ public class FrmAerolinea {
 				break;
 
 			default:
-				System.out.println("Solo numeros entre 1 y 6");
+				System.err.println("Solo numeros entre 1 y 6");
 				break;
 			}
 

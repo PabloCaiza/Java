@@ -1,4 +1,7 @@
 package com.pc12.reservaVuelos.modelo;
+
+import java.util.Comparator;
+
 /**
  * Clase que representa a un Avion de un sistema de reserva de vuelos
  * @author Administrador
@@ -166,6 +169,17 @@ public class Avion {
 		return true;
 	}
 	
+
+	
+	public class ordenarCapacidad implements Comparator<Avion> {
+
+		@Override
+		public int compare(Avion o1, Avion o2) {
+			// TODO Auto-generated method stub
+			return Integer.compare(o1.getCapacidad(), o2.getCapacidad());
+		}
+		
+	}
 	
 	
 	

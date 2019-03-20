@@ -3,16 +3,14 @@ package com.pc12.reservaVuelos.modelo;
 public class Pasajero {
 
 	private String nombre;
-	
+
 	private String cedula;
 	private String email;
 	private String clave;
-	
-	
-	public Pasajero() {
-		
-	}
 
+	public Pasajero() {
+
+	}
 
 	/**
 	 * @param nombre
@@ -21,15 +19,19 @@ public class Pasajero {
 	 * @param email
 	 * @param clave
 	 */
-	public Pasajero(String nombre, String cedula, String email, String clave) {
+	public Pasajero(String nombre, String cedula, String email, String clave) throws Exception {
 		super();
+		
+		if (cedula.length() !=10) {
+			throw new Exception("Ingrese 10 numeros en la cedula");
+		}
+
 		this.nombre = nombre;
-	
+
 		this.cedula = cedula;
 		this.email = email;
 		this.clave = clave;
 	}
-
 
 	/**
 	 * @return the nombre
@@ -38,19 +40,12 @@ public class Pasajero {
 		return nombre;
 	}
 
-
 	/**
 	 * @param nombre the nombre to set
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-
-
-
-
-
 
 	/**
 	 * @return the cedula
@@ -59,14 +54,12 @@ public class Pasajero {
 		return cedula;
 	}
 
-
 	/**
 	 * @param cedula the cedula to set
 	 */
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
-
 
 	/**
 	 * @return the email
@@ -75,14 +68,12 @@ public class Pasajero {
 		return email;
 	}
 
-
 	/**
 	 * @param email the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	/**
 	 * @return the clave
@@ -91,7 +82,6 @@ public class Pasajero {
 		return clave;
 	}
 
-
 	/**
 	 * @param clave the clave to set
 	 */
@@ -99,8 +89,9 @@ public class Pasajero {
 		this.clave = clave;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
@@ -108,8 +99,9 @@ public class Pasajero {
 		return "Pasajero [nombre=" + nombre + ", cedula=" + cedula + ", email=" + email + ", clave=" + clave + "]";
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -120,8 +112,9 @@ public class Pasajero {
 		return result;
 	}
 
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -140,9 +133,5 @@ public class Pasajero {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 
 }
